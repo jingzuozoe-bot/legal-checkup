@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>企业法律风险自测 | 明甲律师事务所</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: #0f0f0f;
+  color: #e0e0e0;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+.container { max-width: 480px; margin: 0 auto; padding: 20px 16px 40px; }
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 32px 0 24px;
+  border-bottom: 1px solid #2a2a2a;
+  margin-bottom: 28px;
+}
+.header .logo {
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #c41e3a;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.header .subtitle {
+  font-size: 14px;
+  color: #888;
+}
+
+/* Section */
+.section {
+  margin-bottom: 28px;
+}
+.section-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #c41e3a;
+  margin-bottom: 16px;
+  padding-left: 12px;
+  border-left: 3px solid #c41e3a;
+}
+
+/* Question card */
+.question {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.question.checked {
+  border-color: #c41e3a;
+  background: #1c1214;
+}
+.question-text {
+  font-size: 15px;
+  color: #d0d0d0;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.question-options {
+  display: flex;
+  gap: 12px;
+}
+.option {
+  flex: 1;
+  text-align: center;
+  padding: 10px 8px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #333;
+  color: #888;
+  transition: all 0.2s;
+}
+.option.selected { border-color: #c41e3a; color: #c41e3a; background: rgba(196,30,58,0.08); }
+.option:active { transform: scale(0.97); }
+
+/* Score */
+.score-section {
+  background: linear-gradient(135deg, #1a1a1a, #1c1214);
+  border: 1px solid #c41e3a;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  margin: 32px 0 20px;
+  display: none;
+}
+.score-section.show { display: block; }
+.score-number {
+  font-size: 48px;
+  font-weight: 800;
+  color: #c41e3a;
+  line-height: 1;
+}
+.score-label { font-size: 14px; color: #888; margin-top: 8px; }
+.risk-level {
+  margin-top: 12px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 700;
+}
+.risk-low { background: rgba(34,197,94,0.15); color: #22c55e; }
+.risk-mid { background: rgba(234,179,8,0.15); color: #eab308; }
+.risk-high { background: rgba(249,115,22,0.15); color: #f97316; }
+.risk-critical { background: rgba(239,68,68,0.15); color: #ef4444; }
+
+/* Submit */
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: #c41e3a;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 8px 0 20px;
+  letter-spacing: 2px;
+}
+.submit-btn:active { background: #a01830; }
+.submit-btn:disabled { background: #444; color: #888; }
+
+/* Contact */
+.contact {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #2a2a2a;
+  display: none;
+}
+.contact.show { display: block; }
+.contact h3 {
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.contact input {
+  width: 100%;
+  padding: 14px;
+  background: #0f0f0f;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 15px;
+  margin-bottom: 12px;
+  outline: none;
+}
+.contact input:focus { border-color: #c41e3a; }
+.contact .tips {
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 24px 0;
+  color: #666;
+  font-size: 12px;
+  border-top: 1px solid #1a1a1a;
+  margin-top: 32px;
+}
+.footer .brand {
+  color: #c41e3a;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+/* QR code */
+.qr-section {
+  text-align: center;
+  margin-top: 20px;
+}
+.qr-code {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 8px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px;
+}
+.qr-hint {
+  font-size: 11px;
+  color: #666;
+}
+
+/* Hide checkbox inputs */
+input[type="radio"] { display: none; }
+
+/* Confirmation dialog */
+.dialog-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100; display: none;
+}
+.dialog-overlay.show { display: flex; }
+.dialog {
+  background: #1a1a1a;
+  border: 1px solid #c41e3a;
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  max-width: 320px;
+  width: 90%;
+}
+.dialog-icon { font-size: 48px; margin-bottom: 16px; }
+.dialog h3 { color: #fff; font-size: 18px; margin-bottom: 8px; }
+.dialog p { color: #888; font-size: 14px; margin-bottom: 20px; }
+.dialog-btn {
+  width: 100%; padding: 14px;
+  background: #c41e3a; color: #fff;
+  border: none; border-radius: 10px;
+  font-size: 16px; font-weight: 700; cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="logo">Ming Jia Law Firm</div>
+    <h1>企业法律风险自测</h1>
+    <div class="subtitle">16道题 · 3分钟 · 免费获取风险评估</div>
+  </div>
+
+  <!-- 板块一：股东/合伙人关系 -->
+  <div class="section">
+    <div class="section-title">一、股东与合伙人关系</div>
+
+    <div class="question" onclick="toggleCard(this, 'q1')">
+      <div class="question-text">1. 公司当初和朋友、亲戚一起开的，股权随口定的，有人想退出，分红怎么分说不清</div>
+      <div class="question-options">
+        <div class="option" data-q="q1" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q1','yes')">遇到过</div>
+        <div class="option" data-q="q1" data-v="no" onclick="event.stopPropagation();selectOption(this,'q1','no')">还没</div>
+      </div>
+    </div>
+
+    <div class="question" onclick="toggleCard(this, 'q2')">
+      <div class="question-text">2. 有小股东要求查账被拒，正在闹；或者你就是想看账看不了的那个股东</div>
+      <div class="question-options">
+        <div class="option" data-q="q2" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q2','yes')">遇到过</div>
+        <div class="option" data-q="q2" data-v="no" onclick="event.stopPropagation();selectOption(this,'q2','no')">还没</div>
+      </div>
+    </div>
+
+    <div class="question" onclick="toggleCard(this, 'q3')">
+      <div class="question-text">3. 公司股权登记在配偶或父母名下，离婚或闹翻了，股权算谁的——从来没聊过</div>
+      <div class="question-options">
+        <div class="option" data-q="q3" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q3','yes')">遇到过</div>
+        <div class="option" data-q="q3" data-v="no" onclick="event.stopPropagation();selectOption(this,'q3','no')">还没</div>
+      </div>
+    </div>
+
+    <div class="question" onclick="toggleCard(this, 'q4')">
+      <div class="question-text">4. 当年让人代持股份拿矿拿项目，现在代持人联系不上或态度变了</div>
+      <div class="question-options">
+        <div class="option" data-q="q4" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q4','yes')">遇到过</div>
+        <div class="option" data-q="q4" data-v="no" onclick="event.stopPropagation();selectOption(this,'q4','no')">还没</div>
+      </div>
+    </div>
+
+    <div class="question" onclick="toggleCard(this, 'q5')">
+      <div class="question-text">5. 增资扩股引进新股东后，没约定哪些事需要你一票否决，感觉自己说话不算了</div>
+      <div class="question-options">
+        <div class="option" data-q="q5" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q5','yes')">遇到过</div>
+        <div class="option" data-q="q5" data-v="no" onclick="event.stopPropagation();selectOption(this,'q5','no')">还没</div>
+      </div>
+    </div>
+
+    <div class="question" onclick="toggleCard(this, 'q6')">
+      <div class="question-text">6. 工商登记的股权比例和实际出资、分红的数字对不上，内外两张皮</div>
+      <div class="question-options">
+        <div class="option" data-q="q6" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q6','yes')">遇到过</div>
+        <div class="option" data-q="q6" data-v="no" onclick="event.stopPropagation();selectOption(this,'q6','no')">还没</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块二：债务与现金流 -->
+  <div class="section">
+    <div class="section-title">二、债务与现金流</div>
+
+    <div class="question" onclick="toggleCard(this, 'q7')">
+      <div class="question-text">7. 煤款或工程款被拖欠超过一年，对方公司看着快不行了，正在转移资产</div>
+      <div class="question-options">
+        <div class="option" data-q="q7" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q7','yes')">遇到过</div>
+        <div class="option" data-q="q7" data-v="no" onclick="event.stopPropagation();selectOption(this,'q7','no')">还没</div>
+      </div>
+    </div>
+
+    <div class="question" onclick="toggleCard(this, 'q8')">
+      <div class="question-text">8. 给朋友的生意做了担保，对方还不上贷款，银行找到你了</div>
+      <div class="question-options">
+        <div class="option" data-q="q8" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q8','yes')">遇到过</div>
+        <div class="option" data-q="q8" data-v="no" onclick="event.stopPropagation();selectOption(this,'q8','no')">还没</div>
+      </div>
+    </div>
+
+    <div class="question" onclick="toggleCard(this, 'q9')">
+      <div class="question-text">9. 三角债——上游欠你的钱不结，下游你又欠着别人的，两头被挤</div>
+      <div class="question-options">
+        <div class="option" data-q="q9" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q9','yes')">遇到过</div>
+        <div class="option" data-q="q9" data-v="no" onclick="event.stopPropagation();selectOption(this,'q9','no')">还没</div>
+      </div>
+    </div>
+
+    <div class="question" onclick="toggleCard(this, 'q10')">
+      <div class="question-text">10. 公司账户上没钱，追债的人盯上你个人名下的房子和存款了</div>
+      <div class="question-options">
+        <div class="option" data-q="q10" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q10','yes')">遇到过</div>
+        <div class="option" data-q="q10" data-v="no" onclick="event.stopPropagation();selectOption(this,'q10','no')">还没</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块三：税务 -->
+  <div class="section">
+    <div class="section-title">三、税务合规</div>
+
+    <div class="question" onclick="toggleCard(this, 'q11')">
+      <div class="question-text">11. 给中间人的居间费走了个人卡，没有发票，不知道怎么补</div>
+      <div class="question-options">
+        <div class="option" data-q="q11" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q11','yes')">遇到过</div>
+        <div class="option" data-q="q11" data-v="no" onclick="event.stopPropagation();selectOption(this,'q11','no')">还没</div>
+      </div>
+    </div>
+
+    <div class="question" onclick="toggleCard(this, 'q12')">
+      <div class="question-text">12. 名下几家公司之间互相调货调资金，价格随便写的，没按市场价走账</div>
+      <div class="question-options">
+        <div class="option" data-q="q12" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q12','yes')">遇到过</div>
+        <div class="option" data-q="q12" data-v="no" onclick="event.stopPropagation();selectOption(this,'q12','no')">还没</div>
+      </div>
+    </div>
+
+    <div class="question" onclick="toggleCard(this, 'q13')">
+      <div class="question-text">13. 金税四期上线后，私账收了公司的钱，银行数据全报给税务局了——这事你清楚吗</div>
+      <div class="question-options">
+        <div class="option" data-q="q13" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q13','yes')">遇到过</div>
+        <div class="option" data-q="q13" data-v="no" onclick="event.stopPropagation();selectOption(this,'q13','no')">还没</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块四：公司法新规 -->
+  <div class="section">
+    <div class="section-title">四、公司法新规冲击</div>
+
+    <div class="question" onclick="toggleCard(this, 'q14')">
+      <div class="question-text">14. 注册资本认缴五千万，新公司法规定五年内必须实缴到位，现金不够</div>
+      <div class="question-options">
+        <div class="option" data-q="q14" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q14','yes')">遇到过</div>
+        <div class="option" data-q="q14" data-v="no" onclick="event.stopPropagation();selectOption(this,'q14','no')">还没</div>
+      </div>
+    </div>
+
+    <div class="question" onclick="toggleCard(this, 'q15')">
+      <div class="question-text">15. 以前注册公司时注册资本写得虚高，现在想减下来，不知道怎么操作才安全</div>
+      <div class="question-options">
+        <div class="option" data-q="q15" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q15','yes')">遇到过</div>
+        <div class="option" data-q="q15" data-v="no" onclick="event.stopPropagation();selectOption(this,'q15','no')">还没</div>
+      </div>
+    </div>
+
+    <div class="question" onclick="toggleCard(this, 'q16')">
+      <div class="question-text">16. 你是一家公司的唯一股东——按新公司法，你对公司债务承担无限连带责任，以前不知道吧</div>
+      <div class="question-options">
+        <div class="option" data-q="q16" data-v="yes" onclick="event.stopPropagation();selectOption(this,'q16','yes')">遇到过</div>
+        <div class="option" data-q="q16" data-v="no" onclick="event.stopPropagation();selectOption(this,'q16','no')">还没</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="submit-btn" onclick="calculateScore()">查看我的风险等级</button>
+
+  <div class="score-section" id="scoreSection">
+    <div class="score-label">风险指数</div>
+    <div class="score-number" id="scoreNumber">0</div>
+    <div class="score-label">/ 16 题</div>
+    <div class="risk-level" id="riskLevel"></div>
+    <p style="margin-top:16px;color:#888;font-size:14px;" id="riskDesc"></p>
+  </div>
+
+  <div class="contact" id="contactSection">
+    <h3>免费获取详细风险分析报告</h3>
+    <input type="tel" id="phoneInput" placeholder="请输入手机号" maxlength="11">
+    <button class="submit-btn" onclick="submitContact()">获取免费报告</button>
+    <p class="tips" style="color:#666;font-size:12px;">明甲律师事务所 | 杨旭律师 | 您的信息仅用于法律服务对接</p>
+  </div>
+
+  <div class="footer">
+    <div class="brand">明理明法 · 甲行天下</div>
+    <div>内蒙古明甲律师事务所</div>
+    <div style="margin-top:4px;">鄂尔多斯 · 能源矿产法律服务</div>
+  </div>
+
+</div>
+
+<!-- 提交确认弹窗 -->
+<div class="dialog-overlay" id="dialogOverlay">
+  <div class="dialog">
+    <div class="dialog-icon">✅</div>
+    <h3>报告已生成</h3>
+    <p id="dialogMsg">杨旭律师将在工作时间内联系您</p>
+    <button class="dialog-btn" onclick="closeDialog()">知道了</button>
+  </div>
+</div>
+
+<script>
+// Questions data
+const QUESTIONS = [
+  { id: 'q1', section: 1 },
+  { id: 'q2', section: 1 },
+  { id: 'q3', section: 1 },
+  { id: 'q4', section: 1 },
+  { id: 'q5', section: 1 },
+  { id: 'q6', section: 1 },
+  { id: 'q7', section: 2 },
+  { id: 'q8', section: 2 },
+  { id: 'q9', section: 2 },
+  { id: 'q10', section: 2 },
+  { id: 'q11', section: 3 },
+  { id: 'q12', section: 3 },
+  { id: 'q13', section: 3 },
+  { id: 'q14', section: 4 },
+  { id: 'q15', section: 4 },
+  { id: 'q16', section: 4 },
+];
+
+let answers = {};
+
+function selectOption(el, q, val) {
+  // Deselect all options for this question
+  const parent = el.parentElement;
+  parent.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  answers[q] = val;
+
+  // Highlight card
+  const card = parent.parentElement;
+  card.classList.add('checked');
+}
+
+function toggleCard(card, q) {
+  // Toggle "还没" as default if nothing selected
+  if (!answers[q]) {
+    answers[q] = 'no';
+    const noOpt = card.querySelector('.option[data-v="no"]');
+    if (noOpt) noOpt.classList.add('selected');
+    card.classList.add('checked');
+  }
+}
+
+function calculateScore() {
+  let score = 0;
+  const sectionScores = {1: 0, 2: 0, 3: 0, 4: 0};
+
+  QUESTIONS.forEach(q => {
+    if (answers[q.id] === 'yes') {
+      score++;
+      sectionScores[q.section]++;
+    }
+  });
+
+  // Display
+  document.getElementById('scoreNumber').textContent = score;
+  const riskEl = document.getElementById('riskLevel');
+  const descEl = document.getElementById('riskDesc');
+  const section = document.getElementById('scoreSection');
+  const contact = document.getElementById('contactSection');
+
+  let level, cls, desc;
+  if (score <= 3) {
+    level = '低风险'; cls = 'risk-low';
+    desc = '目前法律风险可控。建议定期关注公司法新规变化，保持合规意识。';
+  } else if (score <= 7) {
+    level = '中等风险'; cls = 'risk-mid';
+    desc = '已有多项潜在法律隐患，建议安排一次专项法律沟通，梳理风险点并制定应对方案。';
+  } else if (score <= 11) {
+    level = '高风险'; cls = 'risk-high';
+    desc = '多个领域存在明确法律风险，部分问题可能正在影响企业经营或个人资产安全，建议尽快联系律师。';
+  } else {
+    level = '严重风险'; cls = 'risk-critical';
+    desc = '法律风险已全面暴露，涉及股权、债务、税务、公司法新规等多个关键领域，强烈建议立即预约律师面谈。';
+  }
+
+  riskEl.textContent = level;
+  riskEl.className = 'risk-level ' + cls;
+  descEl.textContent = desc;
+  section.classList.add('show');
+  contact.classList.add('show');
+
+  // Build section breakdown
+  const secNames = {1: '股东合伙人关系', 2: '债务现金流', 3: '税务合规', 4: '公司法新规'};
+  let breakdown = Object.entries(sectionScores)
+    .filter(([_, s]) => s > 0)
+    .map(([k, s]) => `"${secNames[k]}" ${s}项`)
+    .join('、');
+
+  // Store for submission
+  window._scoreData = { score, level, breakdown: breakdown || '无' };
+
+  section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function submitContact() {
+  const phone = document.getElementById('phoneInput').value.trim();
+  if (!phone || phone.length < 11) {
+    alert('请输入正确的手机号码');
+    return;
+  }
+
+  const data = window._scoreData || {};
+  const msg = `风险等级：${data.level}（${data.score}/16分）\n风险板块：${data.breakdown}\n\n杨旭律师将尽快与您联系。`;
+
+  document.getElementById('dialogMsg').textContent = msg;
+  document.getElementById('dialogOverlay').classList.add('show');
+
+  // Log to console (in production: send to backend)
+  console.log('Lead:', { phone, ...data });
+
+  // Clear
+  document.getElementById('phoneInput').value = '';
+}
+
+function closeDialog() {
+  document.getElementById('dialogOverlay').classList.remove('show');
+}
+</script>
+</body>
+</html>
