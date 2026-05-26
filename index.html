@@ -3,173 +3,163 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>企业法律风险自测 | 明甲律师事务所</title>
+<title>鄂尔多斯煤炭博览会 · 法律体检 | 鑫阳律师事务所</title>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  background: #f5f6f8;
-  color: #1a1a2e;
-  line-height: 1.6;
-  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: #f0f2f5; color: #111; line-height: 1.7; min-height: 100vh;
 }
-.container { max-width: 480px; margin: 0 auto; padding: 20px 16px 40px; }
+.container { max-width: 520px; margin: 0 auto; padding: 20px 18px 40px; }
 
-/* Header */
-.header {
-  text-align: center;
-  padding: 36px 0 28px;
-  margin-bottom: 24px;
+.header { text-align: center; padding: 28px 0 20px; margin-bottom: 20px; }
+.header .badge {
+  display: inline-block; background: #0b3d7b; color: #fff;
+  padding: 6px 18px; border-radius: 4px; letter-spacing: 3px;
+  font-size: 14px; font-weight: 700; margin-bottom: 14px;
 }
-.header .logo {
-  font-size: 13px;
-  letter-spacing: 4px;
-  color: #1a365d;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-.header h1 {
-  font-size: 26px;
-  font-weight: 700;
-  color: #0d1b2a;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-}
-.header .subtitle {
-  font-size: 14px;
-  color: #6b7c93;
-}
+.header h1 { font-size: 30px; font-weight: 800; color: #0b3d7b; line-height: 1.3; margin-bottom: 8px; }
+.header .subtitle { font-size: 16px; color: #6b7c93; }
 
-/* Section */
-.section { margin-bottom: 24px; }
+.section { margin-bottom: 28px; }
 .section-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: #1a365d;
-  margin-bottom: 14px;
-  padding-left: 12px;
-  border-left: 3px solid #1a365d;
+  font-size: 20px; font-weight: 800; color: #0b3d7b;
+  margin-bottom: 16px; padding-left: 14px; border-left: 4px solid #0b3d7b;
 }
 
-/* Question card */
 .question {
-  background: #fff;
-  border: 1px solid #e2e6ed;
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  background: #fff; border: 2px solid #e2e6ed; border-radius: 12px;
+  padding: 18px 16px; margin-bottom: 12px; cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,.04);
 }
-.question.checked {
-  border-color: #1a365d;
-  background: #f0f4fa;
-}
-.question-text { font-size: 15px; color: #1a1a2e; margin-bottom: 12px; line-height: 1.5; }
-.question-options { display: flex; gap: 10px; }
+.question.checked { border-color: #0b3d7b; background: #eef3fa; }
+.question-text { font-size: 18px; color: #111; margin-bottom: 14px; line-height: 1.6; }
+.question-options { display: flex; gap: 12px; }
 .option {
-  flex: 1; text-align: center; padding: 10px 8px; border-radius: 8px;
-  font-size: 13px; font-weight: 600; border: 1px solid #d1d9e6;
+  flex: 1; text-align: center; padding: 14px 8px; border-radius: 10px;
+  font-size: 16px; font-weight: 700; border: 2px solid #d1d9e6;
   color: #6b7c93; background: #f9fafb; transition: all .2s;
 }
-.option.selected { border-color: #1a365d; color: #fff; background: #1a365d; }
-.option:active { transform: scale(.97); }
+.option.selected { border-color: #0b3d7b; color: #fff; background: #0b3d7b; }
+.option:active { transform: scale(.96); }
 
-/* Score */
 .score-section {
-  background: #fff; border: 1px solid #e2e6ed; border-radius: 12px;
-  padding: 28px 24px; text-align: center; margin: 28px 0 16px;
-  display: none; box-shadow: 0 2px 12px rgba(26,54,93,.06);
+  background: #fff; border: 2px solid #e2e6ed; border-radius: 14px;
+  padding: 32px 24px; text-align: center; margin: 28px 0 16px;
+  display: none; box-shadow: 0 4px 16px rgba(11,61,123,.08);
 }
 .score-section.show { display: block; }
-.score-percent { font-size: 56px; font-weight: 800; color: #1a365d; line-height: 1; margin: 8px 0; }
-.score-label { font-size: 14px; color: #6b7c93; margin-bottom: 4px; }
+.score-percent { font-size: 72px; font-weight: 900; color: #0b3d7b; line-height: 1; margin: 8px 0; }
+.score-label { font-size: 17px; color: #6b7c93; margin-bottom: 4px; }
 
-.risk-bar-wrap { margin: 16px 0 12px; height: 8px; background: #e2e6ed; border-radius: 4px; overflow: hidden; }
-.risk-bar-fill { height: 100%; border-radius: 4px; transition: width .6s ease; }
+.risk-bar-wrap { margin: 18px 0 14px; height: 10px; background: #e2e6ed; border-radius: 5px; overflow: hidden; }
+.risk-bar-fill { height: 100%; border-radius: 5px; transition: width .6s ease; }
 
-.risk-level-tag { display: inline-block; padding: 8px 24px; border-radius: 20px; font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+.risk-level-tag { display: inline-block; padding: 10px 28px; border-radius: 24px; font-size: 18px; font-weight: 800; margin-bottom: 10px; }
 .tag-low { background: #dcfce7; color: #166534; }
 .tag-mid { background: #fef9c3; color: #854d0e; }
 .tag-high { background: #ffedd5; color: #9a3412; }
 .tag-critical { background: #fee2e2; color: #991b1b; }
 
-.risk-desc { font-size: 14px; color: #6b7c93; margin-top: 12px; line-height: 1.6; }
+.risk-desc { font-size: 17px; color: #4a5568; margin-top: 14px; line-height: 1.6; }
 
-.breakdown { margin-top: 20px; text-align: left; background: #f8f9fc; border-radius: 8px; padding: 16px; }
-.breakdown-title { font-size: 13px; color: #6b7c93; font-weight: 600; margin-bottom: 10px; }
-.breakdown-item { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; font-size: 14px; color: #1a1a2e; }
+.breakdown { margin-top: 22px; text-align: left; background: #f8f9fc; border-radius: 10px; padding: 18px; }
+.breakdown-title { font-size: 16px; color: #4a5568; font-weight: 700; margin-bottom: 12px; }
+.breakdown-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; font-size: 17px; color: #111; }
 .breakdown-item .item-name { flex: 1; }
-.breakdown-item .item-bar { flex: 2; height: 6px; background: #e2e6ed; border-radius: 3px; margin: 0 10px; overflow: hidden; }
-.breakdown-item .item-fill { height: 100%; background: linear-gradient(90deg,#1a365d,#2d5aa0); border-radius: 3px; transition: width .6s ease; }
-.breakdown-item .item-count { font-weight: 700; color: #1a365d; min-width: 40px; text-align: right; }
+.breakdown-item .item-bar { flex: 2; height: 8px; background: #e2e6ed; border-radius: 4px; margin: 0 12px; overflow: hidden; }
+.breakdown-item .item-fill { height: 100%; background: linear-gradient(90deg,#0b3d7b,#2563eb); border-radius: 4px; transition: width .6s ease; }
+.breakdown-item .item-count { font-weight: 800; color: #0b3d7b; min-width: 44px; text-align: right; }
 
-/* Submit */
 .submit-btn {
-  width: 100%; padding: 16px; background: #1a365d; color: #fff;
-  border: none; border-radius: 12px; font-size: 17px; font-weight: 700;
-  cursor: pointer; margin: 8px 0 20px; letter-spacing: 2px;
+  width: 100%; padding: 18px; background: #0b3d7b; color: #fff;
+  border: none; border-radius: 14px; font-size: 20px; font-weight: 800;
+  cursor: pointer; margin: 8px 0 22px; letter-spacing: 2px;
 }
-.submit-btn:active { background: #15294a; }
+.submit-btn:active { background: #092f5e; }
 .submit-btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; }
 
-/* Contact */
 .contact {
-  background: #fff; border-radius: 12px; padding: 24px;
-  border: 1px solid #e2e6ed; display: none; text-align: center;
-  box-shadow: 0 2px 12px rgba(26,54,93,.06);
+  background: #fff; border-radius: 14px; padding: 28px 24px;
+  border: 2px solid #e2e6ed; display: none; text-align: center;
+  box-shadow: 0 4px 16px rgba(11,61,123,.08);
 }
 .contact.show { display: block; }
-.contact h3 { font-size: 17px; color: #0d1b2a; margin-bottom: 8px; font-weight: 700; }
-.contact .contact-sub { font-size: 13px; color: #6b7c93; margin-bottom: 20px; }
+.contact h3 { font-size: 22px; color: #0b3d7b; margin-bottom: 10px; font-weight: 800; }
+.contact .contact-sub { font-size: 16px; color: #6b7c93; margin-bottom: 22px; }
 .contact input, .contact textarea {
-  width: 100%; padding: 14px; background: #f8f9fc; border: 1px solid #d1d9e6;
-  border-radius: 8px; color: #1a1a2e; font-size: 15px; margin-bottom: 14px;
+  width: 100%; padding: 16px; background: #f8f9fc; border: 2px solid #d1d9e6;
+  border-radius: 10px; color: #111; font-size: 17px; margin-bottom: 16px;
   outline: none; font-family: inherit; resize: vertical;
 }
 .contact textarea { min-height: 80px; text-align: left; }
 .contact input { text-align: center; letter-spacing: 2px; }
-.contact input:focus, .contact textarea:focus { border-color: #1a365d; background: #fff; }
-.contact .tips { text-align: center; color: #94a3b8; font-size: 12px; margin-top: 6px; }
+.contact input:focus, .contact textarea:focus { border-color: #0b3d7b; background: #fff; }
+.contact .tips { text-align: center; color: #94a3b8; font-size: 14px; margin-top: 8px; }
 
-/* Footer */
-.footer {
-  text-align: center; padding: 24px 0; color: #94a3b8;
-  font-size: 12px; border-top: 1px solid #e2e6ed; margin-top: 32px;
-}
-.footer .brand { color: #1a365d; font-weight: 700; letter-spacing: 2px; margin-bottom: 6px; font-size: 13px; }
+.footer { text-align: center; padding: 28px 0; color: #94a3b8; font-size: 14px; border-top: 2px solid #e2e6ed; margin-top: 36px; }
+.footer .brand { color: #0b3d7b; font-weight: 800; letter-spacing: 3px; margin-bottom: 8px; font-size: 16px; }
 
-/* Dialog */
+/* Report Dialog - 完整报告弹窗 */
 .dialog-overlay {
   position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,.5); display: flex; align-items: center; justify-content: center;
-  z-index: 100; display: none; backdrop-filter: blur(4px);
+  background: rgba(0,0,0,.6); z-index: 100; display: none;
+  align-items: flex-start; justify-content: center;
+  overflow-y: auto; padding: 20px; backdrop-filter: blur(4px);
 }
 .dialog-overlay.show { display: flex; }
 .dialog {
-  background: #fff; border-radius: 20px; padding: 36px 28px; text-align: center;
-  max-width: 340px; width: 90%; box-shadow: 0 8px 40px rgba(26,54,93,.15);
+  background: #fff; border-radius: 20px; padding: 32px 24px;
+  max-width: 460px; width: 100%; box-shadow: 0 12px 48px rgba(11,61,123,.18);
+  margin: auto;
 }
-.dialog-icon { font-size: 48px; margin-bottom: 16px; }
-.dialog h3 { color: #0d1b2a; font-size: 20px; margin-bottom: 12px; font-weight: 700; }
-.dialog .report-summary {
-  text-align: left; background: #f8f9fc; border-radius: 10px;
-  padding: 16px; margin-bottom: 20px; font-size: 14px;
-  color: #1a1a2e; line-height: 1.7;
+.dialog h3 { color: #0b3d7b; font-size: 24px; margin-bottom: 6px; font-weight: 800; text-align: center; }
+.dialog .report-date { text-align: center; font-size: 14px; color: #94a3b8; margin-bottom: 18px; }
+.dialog .report-header-box {
+  text-align: center; background: #f0f4fa; border-radius: 12px;
+  padding: 20px; margin-bottom: 20px;
 }
-.dialog .report-divider { height: 1px; background: #e2e6ed; margin: 10px 0; }
-.dialog-tag { display: inline-block; padding: 4px 14px; border-radius: 12px; font-size: 13px; font-weight: 700; margin: 2px 4px; }
-.dialog-btn {
-  width: 100%; padding: 14px; background: #1a365d; color: #fff;
-  border: none; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer;
+.dialog .report-header-box .big-tag { display: inline-block; padding: 8px 22px; border-radius: 20px; font-size: 17px; font-weight: 800; margin-bottom: 10px; }
+.dialog .report-header-box .big-pct { font-size: 52px; font-weight: 900; color: #0b3d7b; }
+.dialog .report-header-box .big-sub { font-size: 15px; color: #6b7c93; margin-top: 4px; }
+
+.dialog .alarm-box {
+  background: #fff5f5; border: 2px solid #feb2b2; border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 18px; font-size: 16px;
+  color: #991b1b; font-weight: 700; text-align: center;
 }
 
+.dialog .issue-block { margin-bottom: 14px; }
+.dialog .issue-title {
+  font-size: 18px; font-weight: 800; color: #0b3d7b;
+  margin-bottom: 4px; padding: 6px 0;
+}
+.dialog .issue-body { font-size: 16px; color: #2d3748; line-height: 1.8; margin-bottom: 8px; }
+.dialog .issue-law {
+  font-size: 15px; color: #6b7c93; background: #f8f9fc;
+  padding: 10px 14px; border-radius: 8px; border-left: 3px solid #0b3d7b;
+}
+
+.dialog .convince-block {
+  background: #f0f4fa; border-radius: 12px; padding: 18px;
+  margin: 18px 0; text-align: center;
+}
+.dialog .convince-block p { font-size: 17px; color: #0b3d7b; font-weight: 700; line-height: 1.8; }
+
+.dialog-btns { display: flex; gap: 10px; margin-top: 16px; }
+.dialog-btn {
+  flex: 1; padding: 16px 12px; border: none; border-radius: 12px;
+  font-size: 17px; font-weight: 800; cursor: pointer;
+}
+.dialog-btn.primary { background: #0b3d7b; color: #fff; }
+.dialog-btn.secondary { background: #e2e6ed; color: #4a5568; }
+
 .spinner {
-  display: inline-block; width: 20px; height: 20px;
-  border: 2px solid rgba(255,255,255,.3); border-top-color: #fff;
+  display: inline-block; width: 22px; height: 22px;
+  border: 3px solid rgba(255,255,255,.3); border-top-color: #fff;
   border-radius: 50%; animation: spin .6s linear infinite;
-  vertical-align: middle; margin-right: 8px;
+  vertical-align: middle; margin-right: 10px;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 </style>
@@ -178,9 +168,9 @@ body {
 <div class="container">
 
   <div class="header">
-    <div class="logo">Ming Jia Law Firm</div>
-    <h1>企业法律风险自测</h1>
-    <div class="subtitle">16道题 · 3分钟 · 免费获取风险评估</div>
+    <div class="badge">鄂尔多斯煤炭博览会</div>
+    <h1>企业法律风险体检</h1>
+    <div class="subtitle">16道题 · 3分钟 · 看清你的法律风险有多严重</div>
   </div>
 
   <div class="section">
@@ -228,33 +218,44 @@ body {
 
   <div class="contact" id="contactSection">
     <h3>获取详细风险分析报告</h3>
-    <p class="contact-sub">留下联系方式，免费获取个性化法律风险评估</p>
+    <p class="contact-sub">留下联系方式，专业律师为您分析每一处风险</p>
+    <input type="text" id="companyInput" placeholder="企业名称">
     <input type="tel" id="phoneInput" placeholder="手机号码（必填）" maxlength="11">
-    <textarea id="otherIssue" placeholder="其他法律问题（选填）&#10;例如：正在打官司、被税务稽查、想转让股权……"></textarea>
+    <textarea id="otherIssue" placeholder="其他法律问题&#10;例如：正在打官司、被税务稽查、想转让股权……"></textarea>
     <button class="submit-btn" id="submitBtn" onclick="submitContact()">
       <span id="submitText">获取免费报告</span>
     </button>
-    <p class="tips">明甲律师事务所 · 杨旭律师 · 信息仅用于法律服务对接</p>
+    <p class="tips">鑫阳律师事务所 · 律师会联系您 · 信息仅用于法律服务对接</p>
   </div>
 
   <div class="footer">
-    <div class="brand">明理明法 · 甲行天下</div>
-    <div>内蒙古明甲律师事务所</div>
-    <div style="margin-top:2px;">鄂尔多斯 · 能源矿产法律服务</div>
+    <div class="brand">鑫阳律师事务所</div>
+    <div>鄂尔多斯 · 能源矿产法律服务</div>
   </div>
 </div>
 
+<!-- 完整报告弹窗 -->
 <div class="dialog-overlay" id="dialogOverlay">
-  <div class="dialog">
-    <div class="dialog-icon">📋</div>
-    <h3>风险评估报告</h3>
-    <div class="report-summary" id="reportContent"></div>
-    <p style="font-size:13px;color:#6b7c93;margin-bottom:16px;">杨旭律师将根据评估结果安排专业法律沟通</p>
-    <button class="dialog-btn" onclick="closeDialog()">我已知晓</button>
+  <div class="dialog" id="reportDialog">
+    <h3>企业法律风险体检报告</h3>
+    <div class="report-date" id="reportDate"></div>
+    <div class="report-header-box">
+      <div class="big-tag" id="reportTag"></div>
+      <div class="big-pct" id="reportPct">0%</div>
+      <div class="big-sub">16题中命中 <span id="reportHits">0</span> 项</div>
+    </div>
+    <div class="alarm-box" id="alarmBox"></div>
+    <div id="reportBody"></div>
+    <div class="convince-block" id="convinceBlock"></div>
+    <div class="dialog-btns">
+      <button class="dialog-btn primary" onclick="saveAsImage()">📥 保存报告图片</button>
+      <button class="dialog-btn secondary" onclick="closeDialog()">关闭</button>
+    </div>
   </div>
 </div>
 
 <script>
+// ---------- 数据 ----------
 const QUESTIONS = [
   {id:'q1', sec:1, text:'公司股权随口定，有人想退出分红说不清'},
   {id:'q2', sec:1, text:'小股东要求查账被拒'},
@@ -269,7 +270,7 @@ const QUESTIONS = [
   {id:'q11', sec:3, text:'居间费走个人卡无发票'},
   {id:'q12', sec:3, text:'关联公司调货未按市场价走账'},
   {id:'q13', sec:3, text:'金税四期私账收公司钱'},
-  {id:'q14', sec:4, text:'注册资本认缴五千万需五年实缴'},
+  {id:'q14', sec:4, text:'注册资本认缴虚高需五年实缴'},
   {id:'q15', sec:4, text:'注册资本虚高想减资'},
   {id:'q16', sec:4, text:'一人公司无限连带责任'}
 ];
@@ -277,6 +278,91 @@ const SEC_NAMES = {1:'股东合伙人关系',2:'债务现金流',3:'税务合规
 const SEC_TOTAL = {1:6,2:4,3:3,4:3};
 let answers = {};
 
+// ---------- 恐慌报告文案（每题的营销版） ----------
+const REPORT_PANIC = {
+  q1: {
+    title: '股权口头约定——你的股份等于没有',
+    body: '没有书面股东协议，你的股份在法律上是一张空头支票。合伙人随时可以翻脸不认账，你拿不出任何证据。打官司？没有协议，律师费你出得起，赢不了。',
+    law: '《公司法》第4条：股东权利以股东名册和公司章程为准。口头约定不构成公司文件。'
+  },
+  q2: {
+    title: '查账被拒——账本里藏着定时炸弹',
+    body: '你不让看账，不代表法院不让看。小股东一旦起诉，法院会强制开账。到时候账上的每一笔不合规支出——私账收款、无票支出、关联交易——全部变成对方起诉你的弹药。',
+    law: '《公司法》第57条：股东有权查阅公司会计账簿、会计凭证。公司拒绝的，股东可向法院起诉。'
+  },
+  q3: {
+    title: '股权挂在别人名下——你出钱，别人花',
+    body: '法律上你不是股东。代持人把你的股份卖了，你找不回来。代持人离婚了，他配偶分走一半。代持人死了，他的继承人继承。你投入的全部资金，和公司没有任何法律关系。',
+    law: '《公司法》第56条：记载于股东名册的股东，可依股东名册主张行使股东权利。未经登记不得对抗善意第三人。'
+  },
+  q4: {
+    title: '代持人失联——你的股份被冻住了',
+    body: '人联系不上，股份就处于"僵尸状态"。你不能分红、不能转让、不能表决。矿业权代持还涉及《矿产资源法》——矿业权转让须行政审批，代持可能被认定无效。你投进去的钱，法律不保护。',
+    law: '《公司法司法解释三》第24条：实际出资人请求确认股东权利的，需通过诉讼确认。矿业权代持另受《矿产资源法》约束。'
+  },
+  q5: {
+    title: '失去一票否决权——你的公司不再是你说了算',
+    body: '股权被稀释后，大股东可以任意增发、转移核心资产、签订关联交易——你只能看着。没有章程保护条款，你阻止不了任何对你不利的决议。这就是温水煮青蛙式的"被出局"。',
+    law: '《公司法》第66条：修改章程、增减注册资本、合并分立等重大事项，需三分之二以上表决权通过。你不到三分之一，等于零。'
+  },
+  q6: {
+    title: '登记出资与实缴不符——多交几十万冤枉税',
+    body: '股权转让时，税务局只认工商登记数字。你实际多投的几百万不算数。本来转让赚500万，税务局按"登记出资100万"计所得税，你凭空多交一大笔冤枉钱。',
+    law: '《公司法》第47条：公司登记机关依法公示公司登记事项。税务核算以登记出资为基准。'
+  },
+  q7: {
+    title: '账款拖欠超一年——白纸黑字即将变废纸',
+    body: '诉讼时效三年。你不发律师函、不做财产保全、不起诉——时间一到，这笔钱从法律上永久消失。白纸黑字的合同，变成废纸一张。对方正在转移资产，每拖一天你的钱就少一分追回来的可能。',
+    law: '《民法典》第188条：向人民法院请求保护民事权利的诉讼时效期间为三年。时效届满，丧失胜诉权。'
+  },
+  q8: {
+    title: '担保被追债——你签的字值一套房',
+    body: '你签的是"连带保证"还是"一般保证"？合同上只写"我担保"三个字，法院大概率按连带保证判——债权人可以直接起诉你，不用先找主债务人。你的房子、存款，都在执行射程内。',
+    law: '《民法典》第688条：连带责任保证的债务人不履行到期债务，债权人可直接请求保证人承担保证责任。'
+  },
+  q9: {
+    title: '三角债——你被夹在中间，两头挨打',
+    body: '上游不给你钱，下游起诉你。你先赔下游，回头再去追上游——能追回来吗？煤矿行业的钱，欠出去的容易，要回来的难。多层分包、口头合同、现金结算，证据链根本不完整。',
+    law: '《民法典》第535条：债权人可行使代位权，直接起诉次债务人。但需举证债务人对第三人的债权——这恰恰是最难的。'
+  },
+  q10: {
+    title: '公司没钱，盯上你个人——公私混同的代价',
+    body: '公私账混在一起走、银行卡收了公司款、关联公司互相倒账——这些行为在法律上叫"财产混同"。债权人完全可以申请"刺破公司面纱"，把你个人名下所有资产——房子、存款、车辆——全部列入执行范围。',
+    law: '《公司法》第23条：公司股东滥用法人独立地位和股东有限责任，逃避债务，严重损害债权人利益的，应当对公司债务承担连带责任。'
+  },
+  q11: {
+    title: '居间费走个人卡——这不是不规范，这是偷税',
+    body: '居间费没走公司账、没开发票 = 公司少列收入 + 个人隐瞒收入。税务局查出后：补税 + 日万分之五滞纳金（年化18.25%）+ 0.5到5倍罚款。金额大的移送公安，追究刑事责任。',
+    law: '《税收征收管理法》第63条：纳税人少列收入的，是偷税。处不缴或少缴税款50%以上5倍以下罚款；构成犯罪的，依法追究刑事责任。'
+  },
+  q12: {
+    title: '关联交易随意定价——金税四期一键发现',
+    body: 'A公司低价卖给B公司，A不交税B高利润——这叫"转让定价"，税局用大数据自动比对。金税四期打通了银行、工商、税务全链条数据，系统自动标记异常。追溯期5-10年，查出来按调整后金额补税。',
+    law: '《税收征收管理法》第36条：关联企业间的业务往来，不按独立交易原则而减少应纳税所得额的，税务机关有权进行合理调整。'
+  },
+  q13: {
+    title: '金税四期+私账收款——你已经被看见了',
+    body: '你的银行卡流水和个税申报系统已经全面打通。个人账户收公司款，系统自动比对进账与申报收入。以前靠"不报"混过去，现在银行数据直接推送税务局。被发现是早晚的问题。一旦被认定偷税——补税+罚款+滞纳金，金额大则移送。',
+    law: '《税收征收管理法》第63条 + 《刑法》第201条：纳税人采取欺骗、隐瞒手段进行虚假纳税申报，数额巨大且占应纳税额30%以上的，处三年以上七年以下有期徒刑。'
+  },
+  q14: {
+    title: '注册资本虚高——五年内必须拿出现金',
+    body: '新公司法规定认缴出资五年内缴足。存量公司最迟2032年6月30日前完成。你认缴五千万，拿不出来？面临5万-20万罚款，情节严重的处未出资金额5%-15%的罚款。逾期不缴的，公司登记机关可吊销营业执照。',
+    law: '《公司法》第47条：全体股东认缴的出资额由股东按照公司章程的规定自公司成立之日起五年内缴足。第252条：逾期未缴足的，处5-20万元罚款。'
+  },
+  q15: {
+    title: '想减资？弄不好减资无效，责任全在你',
+    body: '减资不是登个报就完了。你必须通知所有债权人——每一个。债权人有权要求你提前还债或提供担保。少通知一个债权人，整个减资程序作废。实务中大量减资被判无效，股东仍需在原认缴范围内承担连带责任。',
+    law: '《公司法》第224条：公司减少注册资本，应自决议作出之日起十日内通知债权人，并于三十日内公告。债权人有权要求清偿债务或提供担保。'
+  },
+  q16: {
+    title: '一人公司——你的全部身家都在风险中',
+    body: '一人公司的举证责任是倒置的——不需要债权人证明你混同了，是你必须自己证明你没混同。你需要独立的财务账簿、独立的银行账户、规范的审计报告。95%的一人公司做不到。一旦公司对外负债，法院直接判股东连带——你的房子、存款、车辆全部进入执行。',
+    law: '《公司法》第23条第3款：只有一个股东的公司，股东不能证明公司财产独立于股东自己的财产的，应当对公司债务承担连带责任。'
+  }
+};
+
+// ---------- 交互 ----------
 function selectOption(el,q,val){
   el.parentElement.querySelectorAll('.option').forEach(o=>o.classList.remove('selected'));
   el.classList.add('selected');
@@ -287,6 +373,7 @@ function toggleCard(card,q){
   if(!answers[q]){ answers[q]='no'; card.querySelector('.option[data-v="no"]').classList.add('selected'); card.classList.add('checked'); }
 }
 
+// ---------- 计算风险 ----------
 function calculateScore(){
   let score=0; const ss={1:0,2:0,3:0,4:0};
   QUESTIONS.forEach(q=>{ if(answers[q.id]==='yes'){ score++; ss[q.sec]++; } });
@@ -297,11 +384,11 @@ function calculateScore(){
     bar=document.getElementById('riskBar'), tag=document.getElementById('riskTag'),
     desc=document.getElementById('riskDesc'), bd=document.getElementById('breakdown');
 
-  let lv,tc,ds;
-  if(score<=3){ lv='低风险'; tc='tag-low'; ds='目前法律风险指数较低，管理体系较为完善。建议定期关注公司法新规变化。'; }
-  else if(score<=7){ lv='中等风险'; tc='tag-mid'; ds='已有多项潜在法律隐患。建议安排专项法律沟通，梳理风险点并制定应对方案。'; }
-  else if(score<=11){ lv='高风险'; tc='tag-high'; ds='多个领域存在明确法律风险，建议尽快联系律师。'; }
-  else { lv='严重风险'; tc='tag-critical'; ds='法律风险已全面暴露，强烈建议立即预约律师面谈。'; }
+  let lv,tc,ds,alarm;
+  if(score<=3){ lv='低风险'; tc='tag-low'; ds='法律风险指数较低。但低风险不等于零风险——公司法新规的冲击对每一家企业都适用。'; alarm='继续往下看，公司法新规的冲击可能让你措手不及'; }
+  else if(score<=7){ lv='中等风险'; tc='tag-mid'; ds='多个领域已出现明确法律隐患。这些问题单独看不大，但连环触发时，你的个人资产可能面临穿透风险。'; alarm='⚠️ 中等风险不是"没事"——这几项叠加的后果你需要知道'; }
+  else if(score<=11){ lv='高风险'; tc='tag-high'; ds='你的企业正在多个领域同时暴露法律风险。债务穿透、税务稽查、股权失控——任何一项单独爆发都足以造成重大损失。'; alarm='🛑 高风险意味着：一场诉讼就可能动摇企业根基'; }
+  else { lv='严重风险'; tc='tag-critical'; ds='法律风险已全面暴露。公私财产混同、税务违规、股权失控——三项叠加，你的企业、个人资产、甚至人身自由都在风险范围内。'; alarm='🔴 严重风险：这些问题是紧迫的，不是"以后再处理"的'; }
   tag.textContent=lv; tag.className='risk-level-tag '+tc; bar.style.width=pct+'%';
   desc.textContent=ds;
 
@@ -312,55 +399,99 @@ function calculateScore(){
   }
   bd.innerHTML=bh; sc.classList.add('show'); ct.classList.add('show');
 
-  // Build answer detail
-  const detail = QUESTIONS.map(q=>`${q.id}: ${answers[q.id]==='yes'?'⚠️命中':'○未命中'} — ${q.text}`).join('\n');
   window._submitData = {
-    手机号:'', 风险得分:score, 风险百分比:pct, 风险等级:lv,
+    企业名称:'', 手机号:'', 风险得分:score, 风险百分比:pct, 风险等级:lv,
     风险板块:Object.entries(ss).map(([k,v])=>`${SEC_NAMES[k]}:${v}/${SEC_TOTAL[k]}`).join(', '),
-    答题详情:detail,
-    提交时间:new Date().toLocaleString('zh-CN',{timeZone:'Asia/Shanghai'})
+    答题详情:QUESTIONS.map(q=>`${q.id}:${answers[q.id]==='yes'?'命中':'未命中'} — ${q.text}`).join('\n'),
+    alarmText:alarm, scoreDetail:ss
   };
   sc.scrollIntoView({behavior:'smooth',block:'center'});
 }
 
+// ---------- 生成完整恐慌报告 ----------
+function buildReport(data){
+  // 找命中的题目
+  const hits = QUESTIONS.filter(q=>answers[q.id]==='yes');
+  let html = '';
+
+  if(hits.length===0){
+    html += '<div class="issue-block"><div class="issue-body">恭喜，16项均未命中。但公司法新规（注册资本五年实缴、一人公司连带责任）对所有企业适用，建议保持关注。</div></div>';
+  } else {
+    hits.forEach((q,i) => {
+      const p = REPORT_PANIC[q.id];
+      if(!p) return;
+      html += `<div class="issue-block">`;
+      html += `<div class="issue-title">${i+1}. ${p.title}</div>`;
+      html += `<div class="issue-body">${p.body}</div>`;
+      html += `<div class="issue-law">📜 ${p.law}</div>`;
+      html += `</div>`;
+    });
+  }
+
+  return html;
+}
+
+function buildConvinceBlock(score){
+  if(score>=12) return '<p>这些问题不是"咨询一下"就能解决的。<br>需要律师深度介入，逐项拆解、分步实施。<br><br>📞 律师会联系您，免费沟通具体方案。</p>';
+  if(score>=8) return '<p>一场诉讼的成本远高于提前防范。<br>不要让今天的疏忽变成明天的判决书。<br><br>📞 律师会联系您，帮您梳理风险、制定应对方案。</p>';
+  if(score>=4) return '<p>这些风险现在处理，成本可控。<br>等到对方起诉你再去补救，代价翻十倍。<br><br>📞 律师会联系您，免费评估风险等级。</p>';
+  return '<p>低风险是好事，但法律环境在变。<br>公司法新规的冲击对每家企业都适用。<br><br>📞 律师会联系您，帮您做好合规预案。</p>';
+}
+
+// ---------- 提交并展示报告 ----------
 async function submitContact(){
+  const company=document.getElementById('companyInput').value.trim();
   const phone=document.getElementById('phoneInput').value.trim();
   if(!phone||phone.length<11){ alert('请输入正确的手机号码'); return; }
   const other=document.getElementById('otherIssue').value.trim();
-  
-  const data={...window._submitData, 手机号:phone, 其他法律问题:other||'无', 提交时间:new Date().toLocaleString('zh-CN',{timeZone:'Asia/Shanghai'})};
+
+  const data={...window._submitData, 企业名称:company||'未填写', 手机号:phone, 其他法律问题:other||'无', 提交时间:new Date().toLocaleString('zh-CN',{timeZone:'Asia/Shanghai'})};
   window._lastData = data;
 
   const btn=document.getElementById('submitBtn'), txt=document.getElementById('submitText');
   btn.disabled=true; txt.innerHTML='<span class="spinner"></span>提交中...';
 
-  // Show report
+  // Build report in dialog
   const tm={低风险:'tag-low',中等风险:'tag-mid',高风险:'tag-high',严重风险:'tag-critical'};
-  document.getElementById('reportContent').innerHTML=`
-    <div style="text-align:center;margin-bottom:12px;"><span class="dialog-tag ${tm[data.风险等级]}">${data.风险等级}</span></div>
-    <div style="text-align:center;font-size:32px;font-weight:800;color:#1a365d;margin:8px 0;">${data.风险百分比}%</div>
-    <div style="text-align:center;font-size:13px;color:#6b7c93;margin-bottom:12px;">企业法律风险指数</div>
-    <div class="report-divider"></div>
-    <div style="margin-top:10px;font-size:13px;"><strong>16题中命中 ${data.风险得分} 项风险</strong></div>
-    <div style="font-size:13px;color:#6b7c93;margin-top:6px;">${data.风险板块}</div>
-    ${other?`<div class="report-divider"></div><div style="font-size:13px;color:#1a365d;"><strong>您提出的问题：</strong><br>${other}</div>`:''}
-  `;
+  document.getElementById('reportDate').textContent = data.提交时间;
+  document.getElementById('reportTag').textContent = data.风险等级;
+  document.getElementById('reportTag').className = 'big-tag '+tm[data.风险等级];
+  document.getElementById('reportPct').textContent = data.风险百分比+'%';
+  document.getElementById('reportHits').textContent = data.风险得分;
+  document.getElementById('alarmBox').textContent = data.alarmText;
+  document.getElementById('reportBody').innerHTML = buildReport(data);
+  document.getElementById('convinceBlock').innerHTML = buildConvinceBlock(data.风险得分);
+
   document.getElementById('dialogOverlay').classList.add('show');
 
   // Send to backend
   try {
     await fetch('https://api.web3forms.com/submit', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({...data, access_key:'ec10d662-f5cb-49d3-9cd9-4aae2906bec6', subject:'法律体检-新线索：'+data.风险等级+' '+data.手机号})
+      body:JSON.stringify({...data, access_key:'ec10d662-f5cb-49d3-9cd9-4aae2906bec6', subject:'煤博会法律体检-'+data.风险等级+'-'+phone})
     });
   }catch(e){ console.log('Backend:',e.message); }
-  
+
   btn.disabled=false; txt.textContent='获取免费报告';
   document.getElementById('phoneInput').value='';
+  document.getElementById('companyInput').value='';
   document.getElementById('otherIssue').value='';
 }
 
 function closeDialog(){ document.getElementById('dialogOverlay').classList.remove('show'); }
+
+// ---------- 保存为图片 ----------
+function saveAsImage(){
+  const el = document.getElementById('reportDialog');
+  html2canvas(el, {scale: 2, backgroundColor: '#ffffff', useCORS: true}).then(canvas => {
+    const link = document.createElement('a');
+    link.download = '企业法律风险体检报告_鑫阳律师事务所.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }).catch(e => {
+    alert('保存失败，请截图保存');
+  });
+}
 </script>
 </body>
 </html>
