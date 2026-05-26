@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>鄂尔多斯煤炭博览会 · 法律体检 | 鑫阳律师事务所</title>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="proxy-config.js"></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -466,18 +467,15 @@ async function submitContact(){
 
   // 飞书表格写入
   
-  // ---- 飞书表格写入 ----
+  // ---- 通过代理写入飞书表格（解决 CORS） ----
   try {
-    const FS_TOKEN = "t-g1045qgj4TDIW3O3TYQVCR4XATR2JFGMYBJPRBH6";
-    const FS_APP = "DaXxbIDDka11zVsA87ecxLg2nKb";
-    const FS_TBL = "tblCND0rib9sSW9f";
     const custName = document.getElementById('companyInput').value.trim();
     const otherText = document.getElementById('otherIssue').value.trim();
     const combinedOther = (custName ? '企业：' + custName : '') + (otherText ? '\n问题：' + otherText : '') || '无';
     
-    await fetch(`https://open.feishu.cn/open-apis/bitable/v1/apps/${FS_APP}/tables/${FS_TBL}/records`, {
+    await fetch(PROXY_URL, {
       method:'POST',
-      headers:{'Authorization':`Bearer ${FS_TOKEN}`,'Content-Type':'application/json'},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({fields:{
         '手机号': phone,
         '风险得分': data.风险得分,
@@ -489,8 +487,8 @@ async function submitContact(){
         '答题详情': data.答题详情,
       }})
     });
-    console.log('Feishu OK');
-  } catch(e) { console.log('Feishu err:',e.message); }
+    console.log('Feishu OK (via proxy)');
+  } catch(e) { console.log('Proxy err:',e.message); }
   // Send to backend web3forms
   try {
     await fetch('https://api.web3forms.com/submit', {
