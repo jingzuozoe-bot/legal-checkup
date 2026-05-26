@@ -3,6 +3,6 @@
 const PROXY_URL = "https://7a195791bd5376.lhr.life/submit";
 
 // 飞书配置 — tenant token 有效期 2h，需定时刷新
-const FS_TOKEN = "t-g1045qhPWBJHY3T6B6QJGSPAS7ZAHB6NPDRZTBAW";
+const FS_TOKEN="t-g1045qjmBDZ2MCFGP3444VYH2G52UF2QRPLCDUI6";
 const FS_APP   = "DaXxbIDDka11zVsA87ecxLg2nKb";
 const FS_TBL   = "tblCND0rib9sSW9f";
