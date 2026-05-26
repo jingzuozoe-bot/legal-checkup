@@ -349,9 +349,9 @@ async function submitContact(){
 
   // Send to backend
   try {
-    await fetch('__BACKEND_URL__', {
+    await fetch('https://api.web3forms.com/submit', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(data)
+      body:JSON.stringify({...data, access_key:'ec10d662-f5cb-49d3-9cd9-4aae2906bec6', subject:'法律体检-新线索：'+data.风险等级+' '+data.手机号})
     });
   }catch(e){ console.log('Backend:',e.message); }
   
