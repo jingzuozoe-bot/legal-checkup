@@ -99,6 +99,19 @@ body {
 .contact input:focus, .contact textarea:focus { border-color: #0b3d7b; background: #fff; }
 .contact .tips { text-align: center; color: #94a3b8; font-size: 14px; margin-top: 8px; }
 
+.wechat-section { display: none; margin-top: 36px; animation: fadeUp .5s ease; }
+.wechat-section.show { display: block; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.wechat-header { text-align: center; margin-bottom: 22px; }
+.wechat-header h3 { font-size: 22px; color: #0b3d7b; font-weight: 800; margin-bottom: 6px; }
+.wechat-header .wechat-sub { font-size: 15px; color: #6b7c93; }
+.wechat-cards { display: flex; gap: 16px; }
+.wechat-card { flex: 1; background: #fff; border: 2px solid #e2e6ed; border-radius: 14px; padding: 20px 16px 18px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+.wechat-qr-wrap { background: #fff; border-radius: 10px; overflow: hidden; margin-bottom: 12px; border: 1px solid #eef1f5; }
+.wechat-qr { width: 100%; display: block; }
+.wechat-name { font-size: 18px; font-weight: 800; color: #111; margin-bottom: 4px; }
+.wechat-desc { font-size: 13px; color: #94a3b8; }
+
 .footer { text-align: center; padding: 28px 0; color: #94a3b8; font-size: 14px; border-top: 2px solid #e2e6ed; margin-top: 36px; }
 .footer .brand { color: #0b3d7b; font-weight: 800; letter-spacing: 3px; margin-bottom: 8px; font-size: 16px; }
 
@@ -227,6 +240,30 @@ body {
       <span id="submitText">获取免费报告</span>
     </button>
     <p class="tips">鑫阳律师事务所 · 律师会联系您 · 信息仅用于法律服务对接</p>
+  </div>
+
+  <!-- 律师微信区域 -->
+  <div class="wechat-section" id="wechatSection">
+    <div class="wechat-header">
+      <h3>📱 添加律师微信</h3>
+      <p class="wechat-sub">获取一对一免费咨询 · 详细分析您的体检报告</p>
+    </div>
+    <div class="wechat-cards">
+      <div class="wechat-card">
+        <div class="wechat-qr-wrap">
+          <img src="wechat_su.jpg" alt="苏律师微信" class="wechat-qr">
+        </div>
+        <div class="wechat-name">苏律师</div>
+        <div class="wechat-desc">长按识别 · 添加微信</div>
+      </div>
+      <div class="wechat-card">
+        <div class="wechat-qr-wrap">
+          <img src="wechat_yang.jpg" alt="杨律师微信" class="wechat-qr">
+        </div>
+        <div class="wechat-name">杨旭律师</div>
+        <div class="wechat-desc">长按识别 · 添加微信</div>
+      </div>
+    </div>
   </div>
 
   <div class="footer">
@@ -464,6 +501,10 @@ async function submitContact(){
   document.getElementById('convinceBlock').innerHTML = buildConvinceBlock(data.风险得分);
 
   document.getElementById('dialogOverlay').classList.add('show');
+
+  // 显示律师微信二维码
+  document.getElementById('wechatSection').classList.add('show');
+  setTimeout(() => { document.getElementById('wechatSection').scrollIntoView({behavior:'smooth',block:'center'}); }, 300);
 
   // 飞书表格写入
   
