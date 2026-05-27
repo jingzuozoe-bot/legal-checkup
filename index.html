@@ -35,15 +35,26 @@ body {
   box-shadow: 0 2px 6px rgba(0,0,0,.04);
 }
 .question.checked { border-color: #0b3d7b; background: #eef3fa; }
+/* 进度条 */
+.progress-wrap { margin-bottom: 22px; }
+.progress-info { font-size: 14px; color: #6b7c93; text-align: center; margin-bottom: 8px; }
+.progress-info span { font-weight: 700; color: #0b3d7b; }
+.progress-bar { height: 6px; background: #e2e6ed; border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg,#0b3d7b,#2563eb); border-radius: 3px; transition: width .3s ease; }
 .question-text { font-size: 18px; color: #111; margin-bottom: 14px; line-height: 1.6; }
-.question-options { display: flex; gap: 12px; }
+.question-options { display: flex; gap: 14px; }
 .option {
-  flex: 1; text-align: center; padding: 14px 8px; border-radius: 10px;
-  font-size: 16px; font-weight: 700; border: 2px solid #d1d9e6;
-  color: #6b7c93; background: #f9fafb; transition: all .2s;
+  flex: 1; text-align: center; padding: 18px 8px; border-radius: 12px;
+  font-size: 18px; font-weight: 700; border: 2px solid #d1d9e6;
+  color: #6b7c93; background: #f9fafb; transition: all .2s; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 .option.selected { border-color: #0b3d7b; color: #fff; background: #0b3d7b; }
 .option:active { transform: scale(.96); }
+.option.no-anim { transition: none; }
+
+/* 板块交替背景 */
+.section:nth-child(even) { background: #f7f9fc; border-radius: 14px; padding: 18px; margin-left: -18px; margin-right: -18px; }
 
 .score-section {
   background: #fff; border: 2px solid #e2e6ed; border-radius: 14px;
@@ -99,18 +110,13 @@ body {
 .contact input:focus, .contact textarea:focus { border-color: #0b3d7b; background: #fff; }
 .contact .tips { text-align: center; color: #94a3b8; font-size: 14px; margin-top: 8px; }
 
-.wechat-section { display: none; margin-top: 36px; animation: fadeUp .5s ease; }
+.wechat-section { display: none; margin-top: 28px; margin-bottom: 20px; animation: fadeUp .5s ease; }
 .wechat-section.show { display: block; }
 @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-.wechat-header { text-align: center; margin-bottom: 22px; }
-.wechat-header h3 { font-size: 22px; color: #0b3d7b; font-weight: 800; margin-bottom: 6px; }
-.wechat-header .wechat-sub { font-size: 15px; color: #6b7c93; }
 .wechat-cards { display: flex; gap: 16px; }
-.wechat-card { flex: 1; background: #fff; border: 2px solid #e2e6ed; border-radius: 14px; padding: 20px 16px 18px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
-.wechat-qr-wrap { background: #fff; border-radius: 10px; overflow: hidden; margin-bottom: 12px; border: 1px solid #eef1f5; }
-.wechat-qr { width: 100%; display: block; }
-.wechat-name { font-size: 18px; font-weight: 800; color: #111; margin-bottom: 4px; }
-.wechat-desc { font-size: 13px; color: #94a3b8; }
+.wechat-card { flex: 1; background: #fff; border: 1px solid #eef1f5; border-radius: 10px; padding: 12px; text-align: center; }
+.wechat-qr { width: 100%; display: block; border-radius: 6px; margin-bottom: 8px; }
+.wechat-name { font-size: 16px; font-weight: 700; color: #333; }
 
 .footer { text-align: center; padding: 28px 0; color: #94a3b8; font-size: 14px; border-top: 2px solid #e2e6ed; margin-top: 36px; }
 .footer .brand { color: #0b3d7b; font-weight: 800; letter-spacing: 3px; margin-bottom: 8px; font-size: 16px; }
@@ -184,7 +190,13 @@ body {
   <div class="header">
     <div class="badge">鄂尔多斯煤炭博览会</div>
     <h1>企业法律风险体检</h1>
-    <div class="subtitle">16道题 · 3分钟 · 看清你的法律风险有多严重</div>
+    <div class="subtitle">16道题 · 3分钟 · 看清你的企业法律风险</div>
+  </div>
+
+  <!-- 进度条 -->
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-info"><span id="progressText">已答 0/16</span> · 剩余约2分钟</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
   </div>
 
   <div class="section">
@@ -233,35 +245,26 @@ body {
   <div class="contact" id="contactSection">
     <h3>获取详细风险分析报告</h3>
     <p class="contact-sub">留下联系方式，专业律师为您分析每一处风险</p>
-    <input type="text" id="companyInput" placeholder="企业名称">
+    <input type="text" id="companyInput" placeholder="企业名称（选填）">
+    <input type="text" id="nameInput" placeholder="您的姓氏（必填）" maxlength="4">
     <input type="tel" id="phoneInput" placeholder="手机号码（必填）" maxlength="11">
-    <textarea id="otherIssue" placeholder="其他法律问题&#10;例如：正在打官司、被税务稽查、想转让股权……"></textarea>
+    <textarea id="otherIssue" placeholder="其他法律问题…"></textarea>
     <button class="submit-btn" id="submitBtn" onclick="submitContact()">
       <span id="submitText">获取免费报告</span>
     </button>
     <p class="tips">内蒙古鑫阳律师事务所 · 律师会联系您 · 信息仅用于法律服务对接</p>
   </div>
 
-  <!-- 律师微信区域 -->
+  <!-- 律师微信二维码 -->
   <div class="wechat-section" id="wechatSection">
-    <div class="wechat-header">
-      <h3>📱 添加律师微信</h3>
-      <p class="wechat-sub">获取一对一免费咨询 · 详细分析您的体检报告</p>
-    </div>
     <div class="wechat-cards">
       <div class="wechat-card">
-        <div class="wechat-qr-wrap">
-          <img src="wechat_su.jpg" alt="苏律师微信" class="wechat-qr">
-        </div>
+        <img src="wechat_su.jpg" alt="苏律师微信" class="wechat-qr">
         <div class="wechat-name">苏律师</div>
-        <div class="wechat-desc">长按识别 · 添加微信</div>
       </div>
       <div class="wechat-card">
-        <div class="wechat-qr-wrap">
-          <img src="wechat_yang.jpg" alt="杨律师微信" class="wechat-qr">
-        </div>
-        <div class="wechat-name">杨旭律师</div>
-        <div class="wechat-desc">长按识别 · 添加微信</div>
+        <img src="wechat_yang.jpg" alt="杨律师微信" class="wechat-qr">
+        <div class="wechat-name">杨律师</div>
       </div>
     </div>
   </div>
@@ -406,9 +409,15 @@ function selectOption(el,q,val){
   el.classList.add('selected');
   answers[q]=val;
   el.parentElement.parentElement.classList.add('checked');
+  updateProgress();
 }
 function toggleCard(card,q){
-  if(!answers[q]){ answers[q]='no'; card.querySelector('.option[data-v="no"]').classList.add('selected'); card.classList.add('checked'); }
+  if(!answers[q]){ answers[q]='no'; card.querySelector('.option[data-v="no"]').classList.add('selected'); card.classList.add('checked'); updateProgress(); }
+}
+function updateProgress(){
+  const n = Object.keys(answers).length;
+  document.getElementById('progressText').textContent = '已答 '+n+'/16';
+  document.getElementById('progressFill').style.width = Math.round(n/16*100)+'%';
 }
 
 // ---------- 计算风险 ----------
@@ -479,11 +488,13 @@ function buildConvinceBlock(score){
 // ---------- 提交并展示报告 ----------
 async function submitContact(){
   const company=document.getElementById('companyInput').value.trim();
+  const name=document.getElementById('nameInput').value.trim();
   const phone=document.getElementById('phoneInput').value.trim();
+  if(!name){ alert('请输入您的姓氏'); return; }
   if(!phone||phone.length<11){ alert('请输入正确的手机号码'); return; }
   const other=document.getElementById('otherIssue').value.trim();
 
-  const data={...window._submitData, 企业名称:company||'未填写', 手机号:phone, 其他法律问题:other||'无', 提交时间:new Date().toLocaleString('zh-CN',{timeZone:'Asia/Shanghai'})};
+  const data={...window._submitData, 企业名称:company||'未填写', 姓氏:name, 手机号:phone, 其他法律问题:other||'无', 提交时间:new Date().toLocaleString('zh-CN',{timeZone:'Asia/Shanghai'})};
   window._lastData = data;
 
   const btn=document.getElementById('submitBtn'), txt=document.getElementById('submitText');
@@ -518,6 +529,7 @@ async function submitContact(){
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({fields:{
+        '姓氏': name,
         '手机号': phone,
         '风险得分': data.风险得分,
         '风险百分比': data.风险百分比,
