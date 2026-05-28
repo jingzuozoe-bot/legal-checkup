@@ -246,6 +246,7 @@ body {
     <h3>获取详细风险分析报告</h3>
     <p class="contact-sub">留下联系方式，专业律师为您分析每一处风险</p>
     <input type="text" id="companyInput" placeholder="企业名称（选填）">
+    <input type="text" id="regionInput" placeholder="公司所在区域 / 主营业务地（必填）" maxlength="50">
     <input type="text" id="nameInput" placeholder="您的姓氏（必填）" maxlength="4">
     <input type="tel" id="phoneInput" placeholder="手机号码（必填）" maxlength="11">
     <textarea id="otherIssue" placeholder="其他法律问题…"></textarea>
@@ -488,13 +489,15 @@ function buildConvinceBlock(score){
 // ---------- 提交并展示报告 ----------
 async function submitContact(){
   const company=document.getElementById('companyInput').value.trim();
+  const region=document.getElementById('regionInput').value.trim();
   const name=document.getElementById('nameInput').value.trim();
   const phone=document.getElementById('phoneInput').value.trim();
+  if(!region){ alert('请输入公司所在区域 / 主营业务地'); return; }
   if(!name){ alert('请输入您的姓氏'); return; }
   if(!phone||phone.length<11){ alert('请输入正确的手机号码'); return; }
   const other=document.getElementById('otherIssue').value.trim();
 
-  const data={...window._submitData, 企业名称:company||'未填写', 姓氏:name, 手机号:phone, 其他法律问题:other||'无', 提交时间:new Date().toLocaleString('zh-CN',{timeZone:'Asia/Shanghai'})};
+  const data={...window._submitData, 企业名称:company||'未填写', 公司所在区域:region, 姓氏:name, 手机号:phone, 其他法律问题:other||'无', 提交时间:new Date().toLocaleString('zh-CN',{timeZone:'Asia/Shanghai'})};
   window._lastData = data;
 
   const btn=document.getElementById('submitBtn'), txt=document.getElementById('submitText');
@@ -529,6 +532,7 @@ async function submitContact(){
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({fields:{
+        '公司所在区域': region,
         '姓氏': name,
         '手机号': phone,
         '风险得分': data.风险得分,
@@ -552,6 +556,7 @@ async function submitContact(){
 
   btn.disabled=false; txt.textContent='获取免费报告';
   document.getElementById('phoneInput').value='';
+  document.getElementById('regionInput').value='';
   document.getElementById('companyInput').value='';
   document.getElementById('otherIssue').value='';
 }
