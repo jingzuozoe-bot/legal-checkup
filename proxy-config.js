@@ -1,6 +1,6 @@
 // 飞书代理 URL — 由 Mini 端 localhost.run 隧道提供
 // 隧道断开后更新此 URL 即可，无需改 index.html
-const PROXY_URL = "https://8134c01d5aae73.lhr.life/submit";
+const PROXY_URL = "https://dc6a1a9d2d2031.lhr.life/submit";
 
 // 飞书配置 — tenant token 有效期 2h，需定时刷新
 const FS_TOKEN="t-g1045qjmBDZ2MCFGP3444VYH2G52UF2QRPLCDUI6";
